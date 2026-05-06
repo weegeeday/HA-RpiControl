@@ -1,0 +1,7 @@
+{
+  "name": "Pi Control",
+  "content_in_root": false,
+  "render_readme": true,
+  "domains": ["picontrol"],
+  "homeassistant": "2023.8.0"
+}
