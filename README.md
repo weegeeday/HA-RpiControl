@@ -44,3 +44,6 @@ The integration adds the following entities to the Pi Control device:
 - **Sensor: Status** - Shows API health.
 - **Sensor: FullPageOS Config** - Displays "Loaded", but stores the full text file content in its `content` attribute (useful for Markdown cards).
 - **Button: Reboot** - Restarts the Pi when pressed.
+- **Button: Display On (CEC)** - Turns on the attached HDMI display via CEC.
+- **Button: Display Off (CEC)** - Turns off the attached HDMI display via CEC.
+- **Button: Switch Input to Pi (CEC)** - Switches the TV's active input to the Pi via CEC.

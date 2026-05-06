@@ -36,5 +36,14 @@ class PiControlClient:
     async def reboot(self) -> dict[str, Any]:
         return await self.request("POST", "/reboot")
 
+    async def cec_on(self) -> dict[str, Any]:
+        return await self.request("POST", "/cec/on")
+
+    async def cec_off(self) -> dict[str, Any]:
+        return await self.request("POST", "/cec/off")
+
+    async def cec_active_source(self) -> dict[str, Any]:
+        return await self.request("POST", "/cec/active_source")
+
     async def run_ssh(self, payload: dict[str, Any]) -> dict[str, Any]:
         return await self.request("POST", "/ssh", json_data=payload)
