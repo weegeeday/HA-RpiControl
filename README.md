@@ -9,6 +9,7 @@ This custom component calls the Pi Control Service to reboot the Pi, read/write 
 1. HACS → Integrations → Custom repositories → add this repo URL.
 2. Category: **Integration**.
 3. Install **Pi Control** and restart Home Assistant.
+4. Settings → Devices & Services → Add Integration → **Pi Control**.
 
 ### Native (no HACS)
 
@@ -27,9 +28,15 @@ picontrol:
   token: "CHANGE_ME"
 ```
 
+YAML is optional if you prefer UI setup.
+
 ## Services
 
 - `picontrol.reboot`
 - `picontrol.get_fullpageos` (writes state `picontrol.fullpageos`)
 - `picontrol.set_fullpageos` (field: `content`)
 - `picontrol.run_ssh` (fields: `host`, `command`, optional `user`, `port`, `identity_file`)
+
+## Entities
+
+The integration adds a `Pi Control Status` sensor so the device shows up in the UI.

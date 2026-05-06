@@ -1,15 +1,35 @@
 reboot:
   name: Reboot Pi
   description: Reboot the Pi via the Pi Control service.
+  fields:
+    entry_id:
+      name: Entry ID
+      description: Optional config entry ID when multiple instances exist.
+      required: false
+      selector:
+        text:
 
 get_fullpageos:
   name: Get FullPageOS content
   description: Reads /boot/fullpageos.txt and stores it in state picontrol.fullpageos.
+  fields:
+    entry_id:
+      name: Entry ID
+      description: Optional config entry ID when multiple instances exist.
+      required: false
+      selector:
+        text:
 
 set_fullpageos:
   name: Set FullPageOS content
   description: Writes /boot/fullpageos.txt content.
   fields:
+    entry_id:
+      name: Entry ID
+      description: Optional config entry ID when multiple instances exist.
+      required: false
+      selector:
+        text:
     content:
       name: Content
       description: Full file contents to write.
@@ -22,6 +42,12 @@ run_ssh:
   name: Run SSH command
   description: Runs an SSH command on a remote host via the Pi service.
   fields:
+    entry_id:
+      name: Entry ID
+      description: Optional config entry ID when multiple instances exist.
+      required: false
+      selector:
+        text:
     host:
       name: Host
       required: true
