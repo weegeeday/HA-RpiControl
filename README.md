@@ -39,4 +39,8 @@ YAML is optional if you prefer UI setup.
 
 ## Entities
 
-The integration adds a `Pi Control Status` sensor so the device shows up in the UI.
+The integration adds the following entities to the Pi Control device:
+
+- **Sensor: Status** - Shows API health.
+- **Sensor: FullPageOS Config** - Displays "Loaded", but stores the full text file content in its `content` attribute (useful for Markdown cards).
+- **Button: Reboot** - Restarts the Pi when pressed.

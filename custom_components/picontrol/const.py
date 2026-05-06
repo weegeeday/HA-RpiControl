@@ -1,5 +1,5 @@
 DOMAIN = "picontrol"
-PLATFORMS = ["sensor"]
+PLATFORMS = ["sensor", "button"]
 
 DATA_CLIENTS = "clients"
 DEFAULT_SCAN_INTERVAL = 60
