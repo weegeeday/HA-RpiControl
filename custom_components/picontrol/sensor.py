@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 from datetime import timedelta
 
 from homeassistant.config_entries import ConfigEntry
@@ -15,6 +16,8 @@ from homeassistant.helpers.update_coordinator import (
 
 from .client import PiControlClient
 from .const import DATA_CLIENTS, DEFAULT_SCAN_INTERVAL, DOMAIN
+
+_LOGGER = logging.getLogger(__name__)
 
 
 async def async_setup_entry(
@@ -43,7 +46,7 @@ async def async_setup_entry(
 
     coordinator = DataUpdateCoordinator(
         hass,
-        logger=None,
+        logger=_LOGGER,
         name=f"{DOMAIN}_{entry.entry_id}",
         update_interval=timedelta(seconds=DEFAULT_SCAN_INTERVAL),
         update_method=async_update_data,
