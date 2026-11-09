@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from typing import Any, Optional
 
 import aiohttp
@@ -18,11 +19,26 @@ class PiControlClient:
         if self._token:
             headers["X-API-Token"] = self._token
         url = f"{self._base_url}{path}"
-        async with self._session.request(method, url, json=json_data, headers=headers) as resp:
-            data = await resp.json(content_type=None)
-            if resp.status >= 400:
-                raise RuntimeError(f"Pi service error {resp.status}: {data}")
-            return data
+        try:
+            async with self._session.request(method, url, json=json_data, headers=headers) as resp:
+                body = await resp.text()
+                if resp.status >= 400:
+                    detail = body.strip() or "empty response"
+                    raise RuntimeError(f"Pi service error {resp.status}: {detail}")
+
+                if not body.strip():
+                    return {}
+
+                try:
+                    data = json.loads(body)
+                except json.JSONDecodeError as err:
+                    raise RuntimeError("Pi service returned invalid JSON") from err
+
+                if not isinstance(data, dict):
+                    raise RuntimeError("Pi service returned an unexpected response")
+                return data
+        except aiohttp.ClientError as err:
+            raise RuntimeError(f"Unable to reach Pi service: {err}") from err
 
     async def health(self) -> dict[str, Any]:
         return await self.request("GET", "/health")
